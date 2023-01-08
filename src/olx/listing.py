@@ -1,8 +1,10 @@
 from bs4.element import Tag
 
+from .session import Session
+
 
 class Listing:
-    def __init__(self, listing_element: Tag) -> None:
+    def __init__(self, listing_element: Tag, session: Session) -> None:
         self.ID = listing_element.get(
             "id",
         ).replace(
