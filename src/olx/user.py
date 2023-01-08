@@ -1,5 +1,6 @@
 from .routes import LOGIN_ROUTE_PATH, USERS_LISTINGS_ROUTE_PATH
 from .session import Session
+from .listing import Listing
 
 import requests
 from bs4 import BeautifulSoup
@@ -35,7 +36,7 @@ class User:
                 "Login attempt failed unexpectedly."
             )
 
-    def get_all_listings(self) -> None:
+    def get_all_listings(self) -> list[Listing]:
         r = self.session.instance.get(
             USERS_LISTINGS_ROUTE_PATH.replace(
                 "{USERNAME}",
@@ -55,10 +56,9 @@ class User:
             }
         )
 
-        for listing in listings:
-            print(
-                listing.prettify(),
-            )
+        listings = [Listing(l) for l in listings]
+
+        return listings
 
     def create_listing(
         self,
