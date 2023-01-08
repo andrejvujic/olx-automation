@@ -1,4 +1,4 @@
-from .routes import LOGIN_ROUTE_PATH, USERS_LISTINGS_ROUTE_PATH
+from .routes import LOGIN_ROUTE_PATH, USERS_LISTINGS_ROUTE_PATH, CONFIRM_ADD_LISTING_PATH
 from .session import Session
 from .listing import Listing
 
@@ -89,7 +89,7 @@ class User:
         }
 
         self.session.instance.post(
-            "https://www.olx.ba/objava/zavrsi",
+            CONFIRM_ADD_LISTING_PATH,
             data=PAYLOAD,
         )
 

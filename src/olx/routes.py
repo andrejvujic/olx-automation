@@ -1,5 +1,6 @@
 INDEX_ROUTE_PATH = "https://www.olx.ba"
 LOGIN_ROUTE_PATH = "https://www.olx.ba/auth/login"
 ADD_LISTING_ROUTE_PATH = "https://www.olx.ba/objava"
+CONFIRM_ADD_LISTING_PATH = "https://www.olx.ba/objava/zavrsi"
 USERS_LISTINGS_ROUTE_PATH = "https://www.olx.ba/profil/{USERNAME}/aktivni"
 DELETE_LISTING_ROUTE_PATH = "https://www.olx.ba/ajax/brisiArtikal"
