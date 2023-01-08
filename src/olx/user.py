@@ -38,3 +38,33 @@ class User:
             raise BaseException(
                 "Login attempt failed unexpectedly."
             )
+
+    def create_listing(
+        self,
+        category: int,
+        title: str,
+        subtitle: str,
+        location_1: int,
+        location_2: int,
+        description: str,
+        price: int,
+        state: str,
+    ) -> None:
+        SESSION_ID = self.session.get_SESSION_ID()
+
+        PAYLOAD = {
+            "kategorija": category,
+            "sesija": SESSION_ID,
+            "naslovartikla": title,
+            "podnaslovartikla": subtitle,
+            "oglas-kanton": location_1,
+            "oglas-grad": location_2,
+            "opis": description,
+            "cijena": price,
+            "stanje": state,
+        }
+
+        self.session.instance.post(
+            "https://www.olx.ba/objava/zavrsi",
+            data=PAYLOAD,
+        )

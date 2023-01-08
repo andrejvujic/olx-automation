@@ -13,3 +13,13 @@ user = User(
 )
 
 user.login()
+user.create_listing(
+    31,
+    "Samsung Galaxy A50",
+    "Telefon bukvalno nov",
+    14,
+    21,
+    "Super stanje!",
+    300,
+    "koristeno",
+)
