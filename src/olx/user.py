@@ -70,7 +70,7 @@ class User:
         description: str,
         price: int,
         state: str,
-    ) -> str:
+    ) -> Listing:
         SESSION_ID = self.session.get_SESSION_ID()
 
         all_listings = self.get_all_listings()
