@@ -24,8 +24,6 @@ class Session:
             "html.parser",
         )
 
-        print(soup.prettify())
-
         token = soup.find(
             "input",
             {
