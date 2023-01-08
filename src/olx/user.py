@@ -2,6 +2,7 @@ from .routes import LOGIN_ROUTE_PATH, USERS_LISTINGS_ROUTE_PATH
 from .session import Session
 from .listing import Listing
 
+import time
 import requests
 from bs4 import BeautifulSoup
 
@@ -91,6 +92,8 @@ class User:
             "https://www.olx.ba/objava/zavrsi",
             data=PAYLOAD,
         )
+
+        time.sleep(3)
 
         updated_all_listings = self.get_all_listings()
 
