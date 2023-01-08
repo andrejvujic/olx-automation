@@ -74,7 +74,6 @@ class User:
         SESSION_ID = self.session.get_SESSION_ID()
 
         all_listings = self.get_all_listings()
-        all_listings_IDs = [l.ID for l in all_listings]
 
         PAYLOAD = {
             "kategorija": category,
@@ -94,11 +93,10 @@ class User:
         )
 
         updated_all_listings = self.get_all_listings()
-        updated_all_listings_IDs = [l.ID for l in all_listings]
 
-        listing_ID = list(
-            set(updated_all_listings_IDs) -
-            set(updated_all_listings),
+        listing = list(
+            set(updated_all_listings) -
+            set(all_listings),
         )[0]
 
-        return listing_ID
+        return listing
