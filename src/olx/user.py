@@ -1,4 +1,4 @@
-from .routes import LOGIN_ROUTE_PATH
+from .routes import LOGIN_ROUTE_PATH, USERS_LISTINGS_ROUTE_PATH
 from .session import Session
 
 import requests
@@ -30,13 +30,34 @@ class User:
             "html.parser",
         )
 
-        print(
-            soup.prettify(),
-        )
-
         if not self.username in soup.text:
             raise BaseException(
                 "Login attempt failed unexpectedly."
+            )
+
+    def get_all_listings(self) -> None:
+        r = self.session.instance.get(
+            USERS_LISTINGS_ROUTE_PATH.replace(
+                "{USERNAME}",
+                self.username,
+            )
+        )
+
+        soup = BeautifulSoup(
+            r.content,
+            "html.parser",
+        )
+
+        listings = soup.find_all(
+            "div",
+            {
+                "class": "artikal",
+            }
+        )
+
+        for listing in listings:
+            print(
+                listing.prettify(),
             )
 
     def create_listing(
