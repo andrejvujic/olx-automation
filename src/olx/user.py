@@ -56,7 +56,7 @@ class User:
             }
         )
 
-        listings = [Listing(l) for l in listings]
+        listings = [Listing(l, session=self.session) for l in listings]
 
         return listings
 
