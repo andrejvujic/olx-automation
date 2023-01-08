@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-from .routes import INDEX_ROUTE_PATH
+from .routes import INDEX_ROUTE_PATH, ADD_LISTING_ROUTE_PATH
 
 
 class Session:
@@ -31,3 +31,22 @@ class Session:
         )["value"]
 
         return token
+
+    def get_SESSION_ID(self) -> None:
+        r = self.instance.get(
+            ADD_LISTING_ROUTE_PATH,
+        )
+
+        soup = BeautifulSoup(
+            r.content,
+            "html.parser",
+        )
+
+        session_id = soup.find(
+            "input",
+            {
+                "name": "sesija",
+            },
+        )["value"]
+
+        return session_id
