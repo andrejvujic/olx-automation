@@ -133,3 +133,54 @@ class User:
         )[0]
 
         return listing
+
+    def get_location(self) -> tuple:
+        canton_id, city_id = None, None
+
+        r = self.session.instance.get(
+            PROFILE_SETTINGS_ROUTE_PATH,
+        )
+
+        soup = BeautifulSoup(
+            r.content,
+            "html.parser",
+        )
+
+        container = soup.find(
+            "select",
+            {
+                "name": "kanton",
+            }
+        )
+
+        options = container.find_all(
+            "option",
+        )
+
+        for option in options:
+            if "selected" in option.attrs:
+                canton_id = option["value"]
+
+        container = soup.find(
+            "select",
+            {
+                "name": "grad",
+            }
+        )
+
+        options = container.find_all(
+            "option",
+        )
+
+        for option in options:
+            if "selected" in option.attrs:
+                city_id = option["value"]
+
+        return (
+            int(
+                canton_id,
+            ),
+            int(
+                city_id,
+            ),
+        )
