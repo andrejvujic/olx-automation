@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from bs4.element import Tag
 
 from .routes import *
 from .category import Category
@@ -72,3 +73,104 @@ class Session:
             return suggestions
 
         return None
+
+    def pick_location(self) -> tuple:
+        r = self.instance.get(
+            PROFILE_SETTINGS_ROUTE_PATH,
+        )
+
+        soup = BeautifulSoup(
+            r.content,
+            "html.parser",
+        )
+
+        container = soup.find(
+            "select",
+            {
+                "name": "kanton",
+            }
+        )
+
+        options = container.find_all(
+            "option",
+        )
+
+        def parse(
+            option: Tag,
+        ) -> tuple:
+            if not option["value"] or not int(
+                option["value"],
+            ):
+                return None
+
+            return (
+                option["value"],
+                option.get_text(),
+            )
+
+        options = [parse(o) for o in options]
+
+        for option in options:
+            if not option:
+                continue
+
+            canton_id = option[0]
+            canton_title = option[1]
+
+            _ = f"{canton_id}".ljust(
+                10,
+            )
+
+            print(
+                f"{_} - {canton_title}",
+            )
+
+        canton_id = input(
+            "\n\n\nPick ID of canton: "
+        )
+
+        r = self.instance.get(
+            CITIES_IN_CANTON_ROUTE_PATH.replace(
+                "{CANTON_ID}",
+                canton_id,
+            ),
+        )
+
+        soup = BeautifulSoup(
+            r.content,
+            "html.parser",
+        )
+
+        options = soup.find_all(
+            "option",
+        )
+
+        options = [parse(o) for o in options]
+
+        print(
+            "\n\n\n",
+        )
+
+        for option in options:
+            if not option:
+                continue
+
+            city_id = option[0]
+            city_title = option[1]
+
+            _ = f"{city_id}".ljust(
+                10,
+            )
+
+            print(
+                f"{_} - {city_title}",
+            )
+
+        city_id = input(
+            "\n\n\nPick ID of city: "
+        )
+
+        return (
+            canton_id,
+            city_id,
+        )
