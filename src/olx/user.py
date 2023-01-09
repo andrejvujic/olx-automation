@@ -32,11 +32,6 @@ class User:
             "html.parser",
         )
 
-        with open("index.html", "w") as f:
-            f.write(
-                soup.prettify(),
-            )
-
         if not r.status_code == 200 or not r.ok:
             raise BaseException(
                 "Login attempt failed unexpectedly."
