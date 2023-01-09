@@ -32,13 +32,7 @@ class User:
             "html.parser",
         )
 
-        print(
-            r.text,
-            r.status_code,
-            r.reason,
-        )
-
-        if not self.username in soup.text:
+        if not r.status_code == 200 or not r.ok:
             raise BaseException(
                 "Login attempt failed unexpectedly."
             )
