@@ -25,19 +25,19 @@ while True:
 
     listing = user.create_listing(
         31,
-        "iPhone XS Max",
+        "iPhone XS Max Gold 512gb",
         "Ekstra stanje",
         location[0],
         location[1],
-        "Telefon je u ekstra stanju\nNema nikava ostecenja\nPrvi vlasnik\n065/020-250",
-        730,
+        "Telefon je u ekstra stanju\n\n\nNema nikava ostecenja\n\n\nPrvi vlasnik\n\n\n065/020-250",
+        "PO DOGOVORU",
         "koristeno",
         images=[
-             "~/Desktop/Images/image-1.jpg",
-             "~/Desktop/Images/image-2.jpg",
-             "~/Desktop/Images/image-3.jpg",
-             "~/Desktop/Images/image-4.jpg",
-             "~/Desktop/Images/image-5.jpg",
+             "/home/pi/Desktop/Images/image-1.jpg",
+             "/home/pi/Desktop/Images/image-2.jpg",
+             "/home/pi/Desktop/Images/image-3.jpg",
+             "/home/pi/Desktop/Images/image-4.jpg",
+             "/home/pi/Desktop/Images/image-5.jpg",
         ],
     )
 
