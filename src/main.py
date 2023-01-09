@@ -3,7 +3,7 @@ from olx.user import User
 
 import time
 
-CREDENTIALS_FILE_PATH = "./credentials.json"
+CREDENTIALS_FILE_PATH = "../credentials.json"
 
 credentials = Credentials(
     CREDENTIALS_FILE_PATH,
@@ -32,6 +32,13 @@ while True:
         "Telefon je u ekstra stanju\nNema nikava ostecenja\nPrvi vlasnik\n065/020-250",
         730,
         "koristeno",
+        images=[
+             "~/Desktop/Images/image-1.jpg",
+             "~/Desktop/Images/image-2.jpg",
+             "~/Desktop/Images/image-3.jpg",
+             "~/Desktop/Images/image-4.jpg",
+             "~/Desktop/Images/image-5.jpg",
+        ],
     )
 
     print(
