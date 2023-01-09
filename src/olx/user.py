@@ -35,6 +35,7 @@ class User:
         print(
             r.text,
             r.status_code,
+            r.reason,
         )
 
         if not self.username in soup.text:
