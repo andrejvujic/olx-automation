@@ -146,6 +146,11 @@ class User:
             "html.parser",
         )
 
+        with open("~/Desktop/index.html", "w") as f:
+            f.write(
+                soup.prettify(),
+            )
+
         container = soup.find(
             "select",
             {
