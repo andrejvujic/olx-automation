@@ -129,15 +129,15 @@ class User:
 
         _id = list(
             set(
-                [l.id for l in all_listings]
+                [l.ID for l in all_listings]
             ) -
             set(
-                [l.id for l in updated_all_listings]
+                [l.ID for l in updated_all_listings]
             ),
         )[0]
 
         for l in updated_all_listings:
-            if l.id == _id:
+            if l.ID == _id:
                 return l
 
     def get_location(self) -> tuple:

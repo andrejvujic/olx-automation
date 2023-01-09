@@ -46,7 +46,7 @@ while True:
     )
 
     time.sleep(
-        3600,
+        300,
     )
 
     print(
