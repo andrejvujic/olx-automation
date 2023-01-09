@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-from .routes import INDEX_ROUTE_PATH, ADD_LISTING_ROUTE_PATH
+from .routes import *
+from .category import Category
 
 
 class Session:
@@ -50,3 +51,24 @@ class Session:
         )["value"]
 
         return session_id
+
+    def get_list_of_categories(
+        self,
+        title: str,
+    ) -> list[Category]:
+        r = self.instance.get(
+            SUGGEST_CATEGORY_FOR_LISTING_ROUTE_PATH.replace(
+                "{TITLE}",
+                title,
+            )
+        )
+
+        response = r.json()
+
+        if response["status"] == 1:
+            suggestions = response["prijedlozi"]
+            suggestions = [Category(s) for s in suggestions]
+
+            return suggestions
+
+        return None
