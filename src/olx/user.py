@@ -146,7 +146,7 @@ class User:
             "html.parser",
         )
 
-        with open("~/Desktop/index.html", "w") as f:
+        with open("index.html", "w") as f:
             f.write(
                 soup.prettify(),
             )
