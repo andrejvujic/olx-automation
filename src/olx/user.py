@@ -129,10 +129,10 @@ class User:
 
         _id = list(
             set(
-                [l.ID for l in all_listings]
+                [l.ID for l in updated_all_listings]
             ) -
             set(
-                [l.ID for l in updated_all_listings]
+                [l.ID for l in all_listings]
             ),
         )[0]
 
