@@ -127,12 +127,18 @@ class User:
 
         updated_all_listings = self.get_all_listings()
 
-        listing = list(
-            set(updated_all_listings) -
-            set(all_listings),
+        _id = list(
+            set(
+                [l.id for l in all_listings]
+            ) -
+            set(
+                [l.id for l in updated_all_listings]
+            ),
         )[0]
 
-        return listing
+        for l in updated_all_listings:
+            if l.id == _id:
+                return l
 
     def get_location(self) -> tuple:
         canton_id, city_id = None, None
