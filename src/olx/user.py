@@ -1,4 +1,4 @@
-from .routes import LOGIN_ROUTE_PATH, USERS_LISTINGS_ROUTE_PATH, CONFIRM_ADD_LISTING_PATH
+from .routes import LOGIN_ROUTE_PATH, USERS_LISTINGS_ROUTE_PATH, CONFIRM_ADD_LISTING_PATH, ADD_IMAGE_TO_LISTING_ROUTE_PATH
 from .session import Session
 from .listing import Listing
 
@@ -71,8 +71,38 @@ class User:
         description: str,
         price: int,
         state: str,
+        images: list[str],
     ) -> Listing:
         SESSION_ID = self.session.get_SESSION_ID()
+
+        for image in images:
+            files = {
+                "myfile": open(
+                    image, "rb",
+                ),
+            }
+
+            r = self.session.instance.post(
+                ADD_IMAGE_TO_LISTING_ROUTE_PATH.replace(
+                    "{SESSION_ID}",
+                    SESSION_ID,
+                ),
+                files=files,
+            )
+
+            response = r.json()
+
+            if response["status"] == 1:
+                image_id = response["id"]
+                image_url = response["slika"]
+
+                print(
+                    f"Upload done:\n   - ID: {image_id}\n   - URL: {image_url}",
+                )
+            else:
+                print(
+                    "Encountered issue when uploading."
+                )
 
         all_listings = self.get_all_listings()
 
