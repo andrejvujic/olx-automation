@@ -1,4 +1,4 @@
-from .routes import LOGIN_ROUTE_PATH, USERS_LISTINGS_ROUTE_PATH, CONFIRM_ADD_LISTING_PATH, ADD_IMAGE_TO_LISTING_ROUTE_PATH
+from .routes import *
 from .session import Session
 from .listing import Listing
 
